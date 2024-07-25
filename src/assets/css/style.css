@@ -33,6 +33,7 @@
 
       --log-text: 222.2 84% 4.9%;
       --inp-text:0% 0% 100%;
+      --nav-col:aliceblue;
     }
   
     .dark {
@@ -63,6 +64,7 @@
 
       --log-text:aliceblue;
       --inp-text:aliceblue;
+      --nav-col:0% 0% 100%;
     }
   }
   
@@ -76,6 +78,9 @@
     }
   }
 
-  .active{
-    color: rgb(83, 113, 225);
+  .dark.active{
+    color: aliceblue;
   }
+  .active{
+    color: rgb(18, 65, 237);
+    }

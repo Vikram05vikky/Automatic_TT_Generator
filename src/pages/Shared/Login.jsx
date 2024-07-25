@@ -3,8 +3,15 @@ import cn from 'classnames';
 import { AnimatedGridPatternDemo } from "@/components/AnimatedGridPatternDemo";
 import { MeteorDemo } from "@/components/meteroids";
 // import Nav from "./Nav";
+import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
+  const move = useNavigate();
+
+  const handledash=()=>{
+    move("/admin/dashboard");
+  }
   return (
     <div className="v1 font-mono">
       <body className="h-screen m-0 flex justify-center bg-cover bg-no-repeat items-center">
@@ -39,7 +46,7 @@ const Login = () => {
           <button className={cn(
               "outline-[none] flex justify-center items-center flex-col no-underline rounded-[5px] w-[30%] h-[10%] border-[none] bg-[rgb(227,_227,_232)] text-[#020227] duration-700",
               "hover:bg-[#060620] hover:text-[rgb(227,_227,_232)] hover:border-[1px] hover:border-[solid] hover:border-[rgb(250,250,250)] hover:decoration-clone"
-             )} >Login</button>
+             )} onClick={handledash}>Login</button>
 
         </form>
       </body>

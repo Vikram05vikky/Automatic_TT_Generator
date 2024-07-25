@@ -10,7 +10,10 @@ import Login from './pages/Shared/Login'
 import Register from './pages/Shared/Register'
 import Notfound from './pages/Shared/Notfound'
 import Sharedlayout from './layout/Sharedlayout'
-
+import UserDashboard from './pages/User/UserDashboard'
+import Adminlayout from './layout/Adminlayout'
+import AdminDashboard from './pages/Admin/AdminDashboard'
+import AdminUsers from './pages/Admin/AdminUsers'
  
 const App = () => {
   return (
@@ -30,8 +33,16 @@ const App = () => {
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
-          <Route path='*' element={<Notfound/>}/>
           </Route>
+
+          {/* <Route path='/userdash' element={<UserDashboard/>}/> */}
+
+          <Route element={<Adminlayout/>}>
+            <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
+            <Route path='/admin/users' element={<AdminUsers/>}/>
+          </Route>
+
+          <Route path='*' element={<Notfound/>}/>
       </Routes>
     </BrowserRouter>
     </>
