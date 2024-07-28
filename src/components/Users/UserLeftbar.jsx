@@ -1,30 +1,26 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Calendar, LayoutDashboard, LogOut, LucidePackagePlus, LucideUserRoundPlus } from 'lucide-react';
+import { Calendar, LayoutDashboard, LibraryBig, LogOut, Presentation } from 'lucide-react';
 import { UsersRound } from 'lucide-react';
 
-const AdminLeftbar = () => {
+const UserLeftbar = () => {
   const adminLinks = [
     {
       title: 'Dashboard',
-      link: '/admin/dashboard',
+      link: '/user/dashboard',
       icon: LayoutDashboard
     },
     {
-      title: 'Staff',
-      link: '/admin/users',
-      icon: UsersRound
+      title: 'Subjects',
+      link: '/user/subjects',
+      icon: LibraryBig
     },
     {
-      title: 'Add Staff',
-      link: '/admin/addstaff',
-      icon: LucideUserRoundPlus
+      title: 'Class',
+      link: '/user/class',
+      icon: Presentation
     },
-    {
-      title: 'Add Subject',
-      link: '/admin/addsubject',
-      icon: LucidePackagePlus
-    }
+    
   ];
 
   return (
@@ -42,10 +38,10 @@ const AdminLeftbar = () => {
           <NavLink 
             key={index}
             to={data.link}
-            className='list-none w-[90%] flex items-center gap-3 px-3 py-4 text-black dark:text-white font-mono text-[130%] hover:border hover:border-stone-950 hover:dark:border-stone-100 hover:rounded-xl'
+            className='list-none w-[90%] flex items-center gap-3 px-3 py-4 text-black dark:text-white font-mono text-[130%] hover:border hover:border-stone-950 hover:dark:border-stone-100 hover:rounded-xl '
           >
             <data.icon className="w-6 h-6" />
-            <span>{data.title}</span>
+            <span >{data.title}</span>
           </NavLink>
         )}
       </div>
@@ -62,4 +58,4 @@ const AdminLeftbar = () => {
   );
 }
 
-export default AdminLeftbar;
+export default UserLeftbar;

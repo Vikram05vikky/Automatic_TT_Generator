@@ -1,4 +1,4 @@
-import { Facebook, Twitch, Twitter } from 'lucide-react'
+import { Facebook, Instagram, Mail, Twitch, Twitter } from 'lucide-react'
 import React from 'react'
 
 const Footer = () => {
@@ -16,6 +16,12 @@ const Footer = () => {
             </a>
             <a href='google.com' target='_blank'>
                 <Twitter/>
+            </a>
+            <a href='google.com' target='_blank'>
+                <Instagram/>
+            </a>
+            <a href='google.com' target='_blank'>
+                <Mail/>
             </a>
         </div>
         </div>

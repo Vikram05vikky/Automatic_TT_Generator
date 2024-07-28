@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { BellRing, Check, Plus } from "lucide-react"
+import { BellRing, Check, Plus, Edit, Trash } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -82,6 +82,18 @@ const AdminUsers = () => {
       totalAmount: "$300.00",
       paymentMethod: "Credit Card",
     },
+    {
+      invoice: "INV007",
+      paymentStatus: "Unpaid",
+      totalAmount: "$300.00",
+      paymentMethod: "Credit Card",
+    },
+    {
+      invoice: "INV007",
+      paymentStatus: "Unpaid",
+      totalAmount: "$300.00",
+      paymentMethod: "Credit Card",
+    },
   ]
 
   const filteredInvoices = invoices.filter((invoice) =>
@@ -91,11 +103,20 @@ const AdminUsers = () => {
     invoice.totalAmount.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
+  const handleEdit = (invoiceId) => {
+    console.log(`Editing ${invoiceId}`);
+    setOpen(true);
+  }
+
+  const handleRemove = (invoiceId) => {
+    console.log(`Removing ${invoiceId}`);
+  }
+
   return (
     <>
-      <Card className='h-full w-full border-none pt-[3vh] font-mono'>
+      <Card className='h-full w-full border-none font-mono'>
         <CardHeader className='w-full flex flex-row justify-between items-center'>
-          <CardTitle>Users</CardTitle>
+          <CardTitle>Staff Details</CardTitle>
           <div className='flex items-center gap-4'>
             <Input 
               type='text' 
@@ -116,10 +137,11 @@ const AdminUsers = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[100px]">Invoice</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Method</TableHead>
+                <TableHead className="w-[100px]">Staff Id</TableHead>
+                <TableHead>Staff Name</TableHead>
+                <TableHead></TableHead>
                 <TableHead className="text-right">Amount</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -129,6 +151,14 @@ const AdminUsers = () => {
                   <TableCell>{invoice.paymentStatus}</TableCell>
                   <TableCell>{invoice.paymentMethod}</TableCell>
                   <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+                  <TableCell className="text-right flex justify-end gap-2">
+                    <Button variant="ghost" onClick={() => handleEdit(invoice.invoice)}>
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" onClick={() => handleRemove(invoice.invoice)}>
+                      <Trash className="h-4 w-4" />
+                    </Button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -159,8 +189,8 @@ const AdminUsers = () => {
             </div>
           </div>
           <SheetFooter className='flex flex-col flex-1'>
-              <Button className='w-1/2 bg-destructive hover:bg-destructive/80' onClick={()=>setOpen(!open)}>Cancel</Button>
-              <Button type="submit" className='w-1/2'>Save changes</Button>
+            <Button className='w-1/2 bg-destructive hover:bg-destructive/80' onClick={()=>setOpen(!open)}>Cancel</Button>
+            <Button type="submit" className='w-1/2'>Save changes</Button>
           </SheetFooter>
         </SheetContent>
       </Sheet>

@@ -25,12 +25,12 @@ function Nav() {
         <div className="h-full w-1/4 flex flex-row justify-center items-center text-2xl font-bold text-[--inp-text]">
           Time T <Calendar/>
         </div>
-        <div className="h-full w-3/4 flex flex-row justify-center items-center text-xl font-bold gap-9 pl-[35vw]">
+        <div className="h-full w-3/4 flex flex-row justify-center items-center text-xl font-bold gap-9 pl-[35vw] ">
        
         {
           LinkData.map((link,index) =>(
             <NavLink to={link.link}>
-            <li key={index}className="list-none text-[100%]">{link.title}</li>
+            <li key={index}className="list-none text-[100%] ">{link.title}</li>
             </NavLink>
           ))
         }
