@@ -120,10 +120,8 @@ const AddSubject = () => {
   };
 
   useEffect(() => {
-    // Disable scrolling when the component is mounted
     document.body.style.overflow = 'hidden';
     return () => {
-      // Enable scrolling when the component is unmounted
       document.body.style.overflow = 'auto';
     };
   }, []);
@@ -167,7 +165,7 @@ const AddSubject = () => {
           <div className="flex items-center">
             <Label className="w-2/4 text-[15px]">Enter Subject Credit</Label>
             <input
-              type="numbers"
+              type="text"
               value={subjectCredit}
               onChange={(e) => setSubjectCredit(e.target.value)}
               required

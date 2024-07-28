@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   Table,
   TableBody,
@@ -8,12 +8,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-
-import { BellRing, Check, Plus, Edit, Trash } from "lucide-react"
-
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/table";
+import { BellRing, Check, Plus, Edit, Trash } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -21,9 +19,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Sheet,
   SheetClose,
@@ -33,90 +31,56 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
+import { Button as AntdButton} from 'antd'
+
 
 const AdminUsers = () => {
-  const [open, setOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
+  const [open, setOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const invoices = [
     {
-      invoice: "INV001",
-      paymentStatus: "Paid",
-      totalAmount: "$250.00",
-      paymentMethod: "Credit Card",
+      dept: "CSE",
+      class: "C",
+      tutor: "Mr.ABCD",
+      strength: "64",
+      tt: "View",
+      generate: "Generate",
     },
     {
-      invoice: "INV002",
-      paymentStatus: "Pending",
-      totalAmount: "$150.00",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV003",
-      paymentStatus: "Unpaid",
-      totalAmount: "$350.00",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV004",
-      paymentStatus: "Paid",
-      totalAmount: "$450.00",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV005",
-      paymentStatus: "Paid",
-      totalAmount: "$550.00",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV006",
-      paymentStatus: "Pending",
-      totalAmount: "$200.00",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV007",
-      paymentStatus: "Unpaid",
-      totalAmount: "$300.00",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV007",
-      paymentStatus: "Unpaid",
-      totalAmount: "$300.00",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV007",
-      paymentStatus: "Unpaid",
-      totalAmount: "$300.00",
-      paymentMethod: "Credit Card",
-    },
-  ]
+      dept: "CSE",
+      class: "A",
+      tutor: "Mr.EFGH",
+      strength: "60",
+      tt: "View",
+      generate: "Generate",
+
+    }
+  ];
 
   const filteredInvoices = invoices.filter((invoice) =>
-    invoice.invoice.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    invoice.paymentStatus.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    invoice.paymentMethod.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    invoice.totalAmount.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+    invoice.dept.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    invoice.class.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    invoice.tutor.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    invoice.strength.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    invoice.tt.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleEdit = (invoiceId) => {
     console.log(`Editing ${invoiceId}`);
     setOpen(true);
-  }
+  };
 
   const handleRemove = (invoiceId) => {
     console.log(`Removing ${invoiceId}`);
-  }
+  };
 
   return (
     <>
       <Card className='h-full w-full border-none font-mono'>
         <CardHeader className='w-full flex flex-row justify-between items-center'>
-          <CardTitle>Staff Details</CardTitle>
+          <CardTitle>Class Details</CardTitle>
           <div className='flex items-center gap-4'>
             <Input 
               type='text' 
@@ -137,25 +101,29 @@ const AdminUsers = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[100px]">Staff Id</TableHead>
-                <TableHead>Staff Name</TableHead>
-                <TableHead></TableHead>
-                <TableHead className="text-right">Amount</TableHead>
+                <TableHead>Department</TableHead>
+                <TableHead>Class</TableHead>
+                <TableHead>Tutor</TableHead>
+                <TableHead >Strength</TableHead>
+                <TableHead >Generate</TableHead>
+                <TableHead >Timetable</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredInvoices.map((invoice) => (
-                <TableRow key={invoice.invoice}>
-                  <TableCell className="font-medium">{invoice.invoice}</TableCell>
-                  <TableCell>{invoice.paymentStatus}</TableCell>
-                  <TableCell>{invoice.paymentMethod}</TableCell>
-                  <TableCell className="text-right">{invoice.totalAmount}</TableCell>
-                  <TableCell className="text-right flex justify-end gap-2">
-                    <Button variant="ghost" onClick={() => handleEdit(invoice.invoice)}>
+              {filteredInvoices.map((invoice, index) => (
+                <TableRow key={index}>
+                  <TableCell className="font-medium">{invoice.dept}</TableCell>
+                  <TableCell>{invoice.class}</TableCell>
+                  <TableCell>{invoice.tutor}</TableCell>
+                  <TableCell >{invoice.strength}</TableCell>
+                  <TableCell ><AntdButton className='font-mono'>{invoice.generate}</AntdButton></TableCell>
+                  <TableCell ><AntdButton className='font-mono'>{invoice.tt}</AntdButton></TableCell>
+                  <TableCell className="flex justify-end gap-2">
+                    <Button variant="ghost" onClick={() => handleEdit(index)}>
                       <Edit className="h-4 w-4" />
                     </Button>
-                    <Button variant="ghost" onClick={() => handleRemove(invoice.invoice)}>
+                    <Button variant="ghost" onClick={() => handleRemove(index)}>
                       <Trash className="h-4 w-4" />
                     </Button>
                   </TableCell>
@@ -198,4 +166,4 @@ const AdminUsers = () => {
   )
 }
 
-export default AdminUsers
+export default AdminUsers;

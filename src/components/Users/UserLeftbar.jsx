@@ -1,15 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Calendar, LayoutDashboard, LibraryBig, LogOut, Presentation } from 'lucide-react';
+import { Calendar, LayoutDashboard, LibraryBig, LogOut, PackagePlus, Presentation } from 'lucide-react';
 import { UsersRound } from 'lucide-react';
 
 const UserLeftbar = () => {
   const adminLinks = [
-    {
-      title: 'Dashboard',
-      link: '/user/dashboard',
-      icon: LayoutDashboard
-    },
+   
     {
       title: 'Subjects',
       link: '/user/subjects',
@@ -19,6 +15,11 @@ const UserLeftbar = () => {
       title: 'Class',
       link: '/user/class',
       icon: Presentation
+    },
+    {
+      title: 'Add Subject',
+      link: '/user/addsubject',
+      icon: PackagePlus
     },
     
   ];

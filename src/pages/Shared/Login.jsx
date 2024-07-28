@@ -13,7 +13,7 @@ const Login = () => {
     if (username === "admin" && password === "admin123") {
       navigate("/admin/dashboard");
     } else if (username === "user" && password === "user123") {
-      navigate("/user/dashboard");
+      navigate("/user/subjects");
     } else {
       setErrorMessage("Invalid username or password");
     }

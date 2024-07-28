@@ -11,7 +11,7 @@ const AdminLeftbar = () => {
       icon: LayoutDashboard
     },
     {
-      title: 'Staff',
+      title: 'Class',
       link: '/admin/users',
       icon: UsersRound
     },

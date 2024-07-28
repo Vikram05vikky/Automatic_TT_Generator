@@ -13,75 +13,58 @@ import {
 const UserSubject = () => {
     const invoices = [
       {
-        invoice: "INV001",
-        paymentStatus: "Paid",
-        totalAmount: "$250.00",
-        paymentMethod: "Credit Card",
+        subjectcode: "22SB201",
+        subjectname: "Software Design Pattern",
+        ppw: "12",
+        year: "3",
+        dept: "CSE",
       },
       {
-        invoice: "INV002",
-        paymentStatus: "Pending",
-        totalAmount: "$150.00",
-        paymentMethod: "PayPal",
+        subjectcode: "22SB102",
+        subjectname: "Operating System",
+        ppw: "10",
+        year: "2",
+        dept: "CSE",
       },
       {
-        invoice: "INV003",
-        paymentStatus: "Unpaid",
-        totalAmount: "$350.00",
-        paymentMethod: "Bank Transfer",
-      },
-      {
-        invoice: "INV004",
-        paymentStatus: "Paid",
-        totalAmount: "$450.00",
-        paymentMethod: "Credit Card",
-      },
-      {
-        invoice: "INV005",
-        paymentStatus: "Paid",
-        totalAmount: "$550.00",
-        paymentMethod: "PayPal",
-      },
-      {
-        invoice: "INV006",
-        paymentStatus: "Pending",
-        totalAmount: "$200.00",
-        paymentMethod: "Bank Transfer",
-      },
-      {
-        invoice: "INV007",
-        paymentStatus: "Unpaid",
-        totalAmount: "$300.00",
-        paymentMethod: "Credit Card",
+        subjectcode: "22SB103",
+        subjectname: "Digital and Analysis of Algorithm",
+        ppw: "8",
+        year: "2",
+        dept: "CSE",
       },
     ]
   return (
     <div className='h-[85%] w-[90%] font-mono'>
+       <div className='text-2xl mb-8 mr-[70vw] font-bold'>
+        Subjects
+        </div>
+        <div className='flex flex-col justify-center items-center'>
 
-  
- 
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead>Subject Code</TableHead>
+            <TableHead>Subject Name</TableHead>
+            <TableHead>Periods per week</TableHead>
+            <TableHead>Year</TableHead>
+            <TableHead>Department</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {invoices.map((invoice) => (
             <TableRow key={invoice.invoice}>
-              <TableCell className="font-medium">{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+              <TableCell className="font-medium">{invoice.subjectcode}</TableCell>
+              <TableCell>{invoice.subjectname}</TableCell>
+              <TableCell>{invoice.ppw}</TableCell>
+              <TableCell >{invoice.year}</TableCell>
+              <TableCell >{invoice.dept}</TableCell>
             </TableRow>
           ))}
         </TableBody>
        
       </Table>
-    
+      </div>
     </div>
   )
 }
