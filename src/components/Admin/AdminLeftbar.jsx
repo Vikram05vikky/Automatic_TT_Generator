@@ -1,9 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Calendar, LayoutDashboard, LogOut, LucidePackagePlus, LucideUserRoundPlus } from 'lucide-react';
+import {  LayoutDashboard, LogOut, LucidePackagePlus, LucideUserRoundPlus } from 'lucide-react';
 import { UsersRound } from 'lucide-react';
+import Calendar from "/src/assets/img/calendar.png";
+import Calendarlit from "/src/assets/img/calendar-lit.png";
+import { useTheme } from '../theme-provider';
 
 const AdminLeftbar = () => {
+  const { theme } = useTheme();
+  const isDarkMode = theme === 'dark';
   const adminLinks = [
     {
       title: 'Dashboard',
@@ -34,7 +39,7 @@ const AdminLeftbar = () => {
         Time T
       </div>
       <div className='pt-[.4vh]'>
-         <Calendar className='h-7 w-7' /> 
+      <img src={isDarkMode ? Calendar : Calendarlit} className="h-10 gap-9" alt="Calendar" />
         </div>
       </div>
       <div className='h-5/6 w-full flex flex-col justify-start items-center'>
