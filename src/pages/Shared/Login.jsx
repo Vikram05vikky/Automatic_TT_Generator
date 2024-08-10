@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import cn from 'classnames';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -8,15 +9,45 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const handledash = (e) => {
+  const [formData,setFormData]=useState({
+    email:'',
+    password:''
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+        ...formData,
+        [name]: value,
+    });
+};
+
+
+  const handledash = async (e) => {
     e.preventDefault();
-    if (username === "admin" && password === "admin123") {
-      navigate("/admin/dashboard");
-    } else if (username === "user" && password === "user123") {
-      navigate("/user/subjects");
-    } else {
-      setErrorMessage("Invalid username or password");
-    }
+    // if (username === "admin" && password === "admin123") {
+    //   navigate("/admin/dashboard");
+    // } else if (username === "user" && password === "user123") {
+    //   navigate("/user/subjects");
+    // } else {
+    //   setErrorMessage("Invalid username or password");
+    // }
+
+    try {
+      console.log(formData)
+      const response = await axios.post('http://localhost:8080/api/v1/auth/authenticate', {
+        // name: formData.name,
+          email: formData.email,
+          password: formData.password
+          // phoneNumber: formData.phoneNumber
+      });
+      console.log("User registered", response.data);
+      alert("Login successful");
+      navigate('/user/subjects');
+  } catch (error) {
+      console.error("There was an error registering the user", error);
+      // setError(error.response?.data || 'Registration failed');
+  }
   }
 
   return (
@@ -31,14 +62,17 @@ const Login = () => {
           <input
             type="text"
             id="name"
+            name="email"
             className={cn(
               "w-4/5 p-4 bg-[rgb(252,_250,_250)] rounded-[5px] text-black",
               "focus:border-b-[4px_solid_#ea8f21] text-black"
             )}
-            placeholder="Name"
+            placeholder="Email"
             required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={formData.email}
+            // onChange={(e) => setUsername(e.target.value)}
+            onChange={handleChange}
+          
           />
           <input
             type="password"
@@ -48,9 +82,11 @@ const Login = () => {
               "focus:border-b-[4px_solid_#ea8f21] text-black"
             )}
             placeholder="Password"
+            name="password"
             required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            // onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChange}
           />
           {errorMessage && (
             <p className="text-red-500 text-xl mt-2">{errorMessage}</p>

@@ -47,7 +47,7 @@ const App = () => {
             {/* <Route path='/user/dashboard' element={<UserDashboard/>}/> */}
             <Route path='/user/subjects' element={<UserSubject/>}/>
             <Route path='/user/class' element={<UserClass/>}/>
-            <Route path='/user/addsubject' element={<UserAddSubject/>}/>
+            {/* <Route path='/user/addsubject' element={<UserAddSubject/>}/> */}
           </Route>
 
           <Route path='*' element={<Notfound/>}/>

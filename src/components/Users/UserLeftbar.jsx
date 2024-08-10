@@ -21,11 +21,11 @@ const UserLeftbar = () => {
       link: '/user/class',
       icon: Presentation
     },
-    {
-      title: 'Add Subject',
-      link: '/user/addsubject',
-      icon: PackagePlus
-    },
+    // {
+    //   title: 'Add Subject',
+    //   link: '/user/addsubject',
+    //   icon: PackagePlus
+    // },
     
   ];
 
