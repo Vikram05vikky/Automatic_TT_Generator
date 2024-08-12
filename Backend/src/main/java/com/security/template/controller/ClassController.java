@@ -11,6 +11,7 @@ import com.security.template.service.ClassService;
 
 @RestController()
 @RequestMapping("/classes")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ClassController {
     @Autowired
     private ClassService cservice;

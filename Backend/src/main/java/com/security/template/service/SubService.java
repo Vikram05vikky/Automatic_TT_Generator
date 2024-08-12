@@ -37,6 +37,7 @@ public class SubService {
             sub.setTitle(subDetails.getTitle());
             sub.setCredit(subDetails.getCredit());
             sub.setUser(subDetails.getUser());
+            sub.setHours(subDetails.getHours());
             srepo.save(sub);
         }
         return sub;

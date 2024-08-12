@@ -27,25 +27,16 @@ function Register() {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // if (formData.password !== formData.confirmPassword) {
-  //     setError('Passwords do not match');
-  //     return;
-  // }
-
-  // if (!isChecked) {
-  //     setError('You must agree to the terms and conditions');
-  //     return;
-  // }
-
   try {
     console.log(formData);
-      const response = await axios.post('http://localhost:8080/api/v1/auth/register', {
-        name: formData.name,
-          email: formData.email,
-          password: formData.password,
-          role:formData.role
-          // phoneNumber: formData.phoneNumber
-      });
+      const response = await axios.post('http://localhost:8080/api/v1/auth/register',formData)
+      //  {
+      //   name: formData.name,
+      //     email: formData.email,
+      //     password: formData.password,
+      //     role:formData.role
+      //     // phoneNumber: formData.phoneNumber
+      // });
       console.log("User registered", response.data);
       alert("Registration successful");
       navigate('/login');

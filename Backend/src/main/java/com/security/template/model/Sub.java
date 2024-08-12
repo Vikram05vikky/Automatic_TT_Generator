@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,13 +18,14 @@ public class Sub {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sid;
+    private String code;
     private String title;
     private String credit;
+    private Long hours;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonDeserialize(using = UserDeserializer.class)
     private User user;
 
-   
 }

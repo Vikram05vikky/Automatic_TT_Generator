@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,11 +20,11 @@ public class Class {
     private Long cid;
     private String dept;
     private String section;
+    private String strength;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonDeserialize(using = UserDeserializer.class)
     private User user;
 
-   
 }

@@ -39,6 +39,7 @@ public class ClassService {
             Class existingClass = existingClassOpt.get();
             existingClass.setDept(classDetails.getDept());
             existingClass.setSection(classDetails.getSection());
+            existingClass.setStrength(classDetails.getStrength());
             return crepo.save(existingClass);
         } else {
             throw new RuntimeException("Class with ID " + uid + " not found");
