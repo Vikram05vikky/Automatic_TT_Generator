@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'http://localhost:8080'
+const baseURL = 'http://localhost:8080';
 
 const axiosInstance = axios.create({
     baseURL,
@@ -19,9 +19,7 @@ axiosInstance.interceptors.request.use(
     }
 );
 
-const SignUp = (name, email, password,role) => axiosInstance.post('api/v1/auth/register', { name, email, password,role });
-// const fetchClass = ()=>axiosInstance.get('/classes/getclasses');
-// const getStaff=()=>axiosInstance.get('/users/getusers');
+const SignUp = (name, email, password, role) => axiosInstance.post('api/v1/auth/register', { name, email, password, role });
 
 const fetchClasses = () => axiosInstance.get('/classes/getclasses');
 const addClass = (classData) => axiosInstance.post('/classes/add', classData);
@@ -37,4 +35,14 @@ const getStaff = () => axiosInstance.get('/users/getusers');
 const editStaff = (id, staffData) => axiosInstance.put(`/users/edit/${id}`, staffData);
 const deleteStaff = (id) => axiosInstance.delete(`/users/delete/${id}`);
 
-export {axiosInstance,SignUp, fetchClasses, addClass, editClass, deleteClass,getStaff,fetchSubjects,addSubject,editSubject,deleteSubject,editStaff,deleteStaff}
+export const fetchUserSub = async (email) => {
+    try {
+      const response = await axiosInstance.get(`/subs/getsubs?email=${email}`);
+      return Array.isArray(response.data) ? response.data : []; // Ensure it's an array
+    } catch (error) {
+      console.error('Error fetching subjects:', error);
+      throw error;
+    }
+  };
+// Export all functions in a single statement
+export { axiosInstance, SignUp, fetchClasses, addClass, editClass, deleteClass, getStaff, fetchSubjects, addSubject, editSubject, deleteSubject, editStaff, deleteStaff };

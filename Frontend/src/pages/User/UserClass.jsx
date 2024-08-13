@@ -52,7 +52,7 @@ const UserClass = () => {
               <TableCell >{invoice.dept}</TableCell>
               <TableCell>{invoice.class}</TableCell>
               <TableCell>{invoice.venue}</TableCell>
-              <Button className='mt-[1vh] ml-[1.5vw] font-mono'>{invoice.tt}</Button>
+              <Button className='mt-[1vh] ml-[1.5vw] font-mono' onClick={handle}>{invoice.tt}</Button>
             </TableRow>
           ))}
         </TableBody>

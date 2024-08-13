@@ -44,10 +44,13 @@ public class UserService {
         return user;
     }
 
+    //////////////////////////////
+
     public Optional<User> getUserByEmail(String email) {
-        // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method
-        // 'getUserByEmail'");
         return urepo.findByEmail(email);
+    }
+
+    public User getUserWithSubjectsByEmail(String email) {
+        return urepo.findByEmail(email).orElse(null);
     }
 }

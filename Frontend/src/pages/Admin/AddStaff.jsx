@@ -53,7 +53,7 @@ const AddStaff = () => {
   }, []);
 
   const filteredStaff = staff.filter((staffMember) =>
-    staffMember.name?.toLowerCase() !== 'admin' &&
+    // staffMember.name?.toLowerCase() !== 'admin' &&
     (
       (staffMember.name?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
       (staffMember.email?.toLowerCase() || '').includes(searchQuery.toLowerCase())

@@ -20,12 +20,11 @@ import UserClass from './pages/User/UserClass'
 import AddStaff from './pages/Admin/AddStaff'
 import AddSubject from './pages/Admin/AddSubject'
 import UserAddSubject from './pages/User/UserAddSubject'
+import TT from './pages/Shared/TT'
 // import UserDashboard from './pages/User/UserDashboard'
  
 const App = () => {
   return (
-  
-    
     <>
     <BrowserRouter>
       <Routes>
@@ -41,6 +40,7 @@ const App = () => {
             <Route path='/admin/users' element={<AdminUsers/>}/>
             <Route path='/admin/addstaff' element={<AddStaff/>}/>
             <Route path='/admin/addsubject' element={<AddSubject/>}/>
+            <Route path='/admin/tt' element={<TT/>}/>
           </Route>
 
           <Route element={<Userlayout/>}>

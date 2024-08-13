@@ -94,12 +94,21 @@ public class UserController {
         return uservice.editUserByUid(uid, userDetails);
     }
 
+    // @PostMapping("/login")
+    // public ResponseEntity<String> Login(@RequestBody User user) {
+    // Optional<User> a = uservice.getUserByEmail(user.getEmail());
+    // if (a == null || !user.getPassword().equals(user.getPassword()))
+    // return ResponseEntity.badRequest().body("Invalid");
+    // else
+    // return ResponseEntity.ok("Success");
+    // }
+
     @PostMapping("/login")
-    public ResponseEntity<String> Login(@RequestBody User user) {
-        Optional<User> a = uservice.getUserByEmail(user.getEmail());
-        if (a == null || !user.getPassword().equals(user.getPassword()))
-            return ResponseEntity.badRequest().body("Invalid");
-        else
-            return ResponseEntity.ok("Success");
+    public ResponseEntity<User> login(@RequestBody User user) {
+        User foundUser = uservice.getUserWithSubjectsByEmail(user.getEmail());
+        if (foundUser == null || !user.getPassword().equals(foundUser.getPassword())) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        return ResponseEntity.ok(foundUser);
     }
 }
