@@ -17,7 +17,7 @@ const UserLeftbar = () => {
       icon: LibraryBig
     },
     {
-      title: 'Class',
+      title: 'View TimeTable',
       link: '/user/class',
       icon: Presentation
     },

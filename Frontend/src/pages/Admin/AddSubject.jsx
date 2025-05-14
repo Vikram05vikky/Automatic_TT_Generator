@@ -352,13 +352,11 @@ const AddSubject = () => {
   const handleSave = async () => {
     try {
       if (selectedIndex !== null) {
-        // Edit existing subject
         const updatedSubject = await editSubject(subjects[selectedIndex].sid, formValues);
         setSubjects(subjects.map((subject, index) =>
           index === selectedIndex ? updatedSubject.data : subject
         ));
       } else {
-        // Add new subject
         const response = await addSubject(formValues);
         setSubjects([...subjects, response.data]);
       }
@@ -408,7 +406,7 @@ const AddSubject = () => {
                   <TableCell>{subject.title}</TableCell>
                   <TableCell>{subject.credit}</TableCell>
                   <TableCell>{subject.hours}</TableCell>
-                  <TableCell>{subject.user ? subject.user.name : 'N/A'}</TableCell>
+                  <TableCell>{subject.user ? subject.user.id : 'N/A'}</TableCell>
                   <TableCell className="flex gap-2">
                     <Button variant="ghost" onClick={() => handleEdit(index)}>
                       <Edit className="h-4 w-4" />

@@ -91,6 +91,7 @@ public class UserController {
 
     @PutMapping("/edit/{uid}")
     public User editUserByUid(@PathVariable Long uid, @RequestBody User userDetails) {
+
         return uservice.editUserByUid(uid, userDetails);
     }
 

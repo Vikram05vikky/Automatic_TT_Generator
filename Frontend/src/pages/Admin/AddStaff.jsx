@@ -87,15 +87,16 @@ const AddStaff = () => {
     if (selectedIndex !== null) {
       try {
         await editStaff(formValues.id, formValues);
-        setStaff(staff.map((staffMember, index) =>
-          index === selectedIndex ? formValues : staffMember
-        ));
+        console.log("API response:", response.data);
+        const updatedStaffList = await fetchStaffList(); // Fetch updated staff data
+        setStaff(updatedStaffList); // Update state with fresh data
       } catch (error) {
         console.error("Error updating staff:", error);
       }
     }
     setOpen(false);
   };
+  
 
   return (
     <>
@@ -112,7 +113,7 @@ const AddStaff = () => {
             />
           </div>
         </CardHeader>
-        <CardContent>
+        {/* <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
@@ -146,7 +147,51 @@ const AddStaff = () => {
               )}
             </TableBody>
           </Table>
-        </CardContent>
+        </CardContent> */}
+        <CardContent>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHead>Staff Id</TableHead>
+        <TableHead>Staff Name</TableHead>
+        <TableHead>Staff Email</TableHead>
+        <TableHead className="text-right">Actions</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      {filteredStaff.length === 0 ? (
+        <TableRow>
+          <TableCell colSpan="4">No staff available</TableCell>
+        </TableRow>
+      ) : (
+        filteredStaff.map((staffMember, index) => (
+          <TableRow key={staffMember.id}>
+            <TableCell>{staffMember.id}</TableCell>
+            <TableCell>{staffMember.name}</TableCell>
+            <TableCell>{staffMember.email}</TableCell>
+            <TableCell className="flex justify-end gap-2">
+              {staffMember.role === "USER" ? (
+                <>
+                  <Button variant="ghost" onClick={() => handleEdit(index)}>
+                    <Edit className="h-4 w-4" />
+                  </Button>
+                  <Button variant="ghost" onClick={() => handleRemove(staffMember.id)}>
+                    <Trash className="h-4 w-4" />
+                  </Button>
+                </>
+              ) : staffMember.role === "ADMIN" ? (
+                <Button variant="ghost" onClick={() => handleEdit(index)}>
+                  <Edit className="h-4 w-4" />
+                </Button>
+              ) : null}
+            </TableCell>
+          </TableRow>
+        ))
+      )}
+    </TableBody>
+  </Table>
+</CardContent>
+
       </Card>
 
       <Sheet open={open} onOpenChange={setOpen}>

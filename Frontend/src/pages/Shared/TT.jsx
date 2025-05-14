@@ -19,7 +19,7 @@ const TimetableGenerator = () => {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'timetable.txt';
+        a.download = 'timetable.pdf';
         a.click();
         URL.revokeObjectURL(url);
     };
@@ -44,37 +44,50 @@ const TimetableGenerator = () => {
         }
     }, [subjects]);
 
+
     const generateTimetable = () => {
-        console.log("Generating Timetable...");  // Debugging statement
+        console.log("Generating Timetable..."); // Debugging statement
         const days = 5;
         const periodsPerDay = 7;
         const newTimetable = [];
-
+        const totalSubjects = subjects.length;
+    
         for (let day = 0; day < days; day++) {
             const dayTimetable = [];
-
+            const usedSubjects = new Set();
+            
+            // Randomly choose one period to be a free period
+            const freePeriodIndex = Math.floor(Math.random() * periodsPerDay);
+    
             for (let period = 0; period < periodsPerDay; period++) {
                 let subjectOrFreePeriod;
-
-                // Randomly choose between a subject or a Free Period
-                if (subjects.length > 0 && Math.random() < 0.7) { // 70% chance to pick a subject if available
-                    const randomIndex = Math.floor(Math.random() * subjects.length);
-                    subjectOrFreePeriod = subjects[randomIndex].title;
-                } else {
+    
+                if (period === freePeriodIndex) {
                     subjectOrFreePeriod = 'Free Period';
+                } else {
+                    let randomIndex;
+                    
+                    do {
+                        randomIndex = Math.floor(Math.random() * totalSubjects);
+                    } while (usedSubjects.has(randomIndex) && usedSubjects.size < totalSubjects);
+                    
+                    subjectOrFreePeriod = subjects[randomIndex].title;
+                    usedSubjects.add(randomIndex);
                 }
-
+    
                 dayTimetable.push(subjectOrFreePeriod);
             }
+    
             newTimetable.push(dayTimetable);
         }
-
-        console.log("New Timetable:", newTimetable);  // Debugging statement
+    
+        console.log("New Timetable:", newTimetable); // Debugging statement
         setTimetable(newTimetable);
     };
+    
 
     return (
-        <div className="p-4">
+        <div className="p-4 font-mono">
             <h1 className="text-xl font-bold mb-4">Generated Timetable</h1>
             <div className="grid grid-cols-8 gap-4">
                 <div className="font-bold">Day / Period</div>
@@ -92,16 +105,32 @@ const TimetableGenerator = () => {
                     </React.Fragment>
                 ))}
             </div>
-            <div>
-            <button onClick={generateTimetable} className="mt-4 p-2 bg-blue-500 text-white rounded">
+            {/* <div className='gap-3'> */}
+            {/* <button onClick={generateTimetable} className="mt-4 p-2 bg-blue-500 text-white rounded">
                 Regenerate Timetable
             </button>
-            </div>
             <button onClick={handleDownload} className="mt-4 p-2 bg-blue-500 text-white rounded">
                 Download
             </button>
+            </div> */}
+              <div className="flex gap-3 mt-6">
+                <button
+                    onClick={generateTimetable}
+                    className="p-2 px-4 bg-blue-500 text-white rounded shadow-md hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all duration-200 ease-in-out transform hover:scale-105"
+                >
+                    Regenerate Timetable
+                </button>
+                <button
+                    onClick={handleDownload}
+                    className="p-2 px-4 bg-blue-500 text-white rounded shadow-md hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all duration-200 ease-in-out transform hover:scale-105"
+                >
+                    Download
+                </button>
+            </div>
         </div>
     );
+     
+    
 };
 
 export default TimetableGenerator;

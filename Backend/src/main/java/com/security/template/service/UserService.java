@@ -44,8 +44,6 @@ public class UserService {
         return user;
     }
 
-    //////////////////////////////
-
     public Optional<User> getUserByEmail(String email) {
         return urepo.findByEmail(email);
     }

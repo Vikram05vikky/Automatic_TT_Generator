@@ -242,6 +242,8 @@ const Login = () => {
     }
 
     try {
+      console.log(formData.email);
+      console.log(formData.password);
       const response = await authService.SignIn(formData.email, formData.password);
       const { token } = response.data;
       console.log(formData)

@@ -27,12 +27,10 @@ public class ClassService {
         return "Class Deleted " + cid;
     }
 
-    // New method to find class by cid
     public Optional<Class> getClassByCid(Long cid) {
         return crepo.findById(cid);
     }
 
-    // New method to edit class details by uid
     public Class editClassDetails(Long uid, Class classDetails) {
         Optional<Class> existingClassOpt = crepo.findById(uid);
         if (existingClassOpt.isPresent()) {

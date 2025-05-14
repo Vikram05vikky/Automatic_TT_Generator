@@ -21,7 +21,7 @@ const AdminLeftbar = () => {
       icon: UsersRound
     },
     {
-      title: 'Add Staff',
+      title: 'Manage Staff',
       link: '/admin/addstaff',
       icon: LucideUserRoundPlus
     },

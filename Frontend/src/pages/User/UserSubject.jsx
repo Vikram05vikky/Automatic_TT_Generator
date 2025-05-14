@@ -70,13 +70,14 @@
 // }
 
 // export default UserSubject
+
 import React, { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { authService } from '@/service/auth';  // Adjust the path according to your project structure
-import { fetchUserSub } from '@/service/api';  // Adjust the path according to your project structure
+import { authService } from '@/service/auth';  
+import { fetchUserSub } from '@/service/api';  
 
 const UserSubject = () => {
-  const [subjects, setSubjects] = useState([]); // Initialize as an empty array
+  const [subjects, setSubjects] = useState([]); 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -86,8 +87,8 @@ const UserSubject = () => {
       if (email) {
         try {
           const data = await fetchUserSub(email);
-          console.log('Fetched subjects:', data); // Log to ensure it's an array
-          setSubjects(Array.isArray(data) ? data : []); // Ensure subjects is always an array
+          console.log('Fetched subjects:', data); 
+          setSubjects(Array.isArray(data) ? data : []); 
         } catch (err) {
           setError('Error fetching subjects');
         } finally {
